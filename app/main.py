@@ -14,3 +14,8 @@ async def get_profile_id(profile_id: int):
 async def read_component(number: int, text: str):
     number+= 1
     return{"msg": "" , "data":{"number": number , "text" : text}}
+
+
+
+
+# yeah
