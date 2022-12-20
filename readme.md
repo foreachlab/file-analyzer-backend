@@ -18,3 +18,9 @@ Installing requirements to virtual env
 ```
 pip install -r requirements.txt
 ```
+
+
+If you install a package, then you have to update reqirements.txt:
+```
+pip freeze > reqirements.txt
+```
