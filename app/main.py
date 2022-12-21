@@ -1,5 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Response
 from starlette.middleware.cors import CORSMiddleware
+
+from utils import config
 
 app = FastAPI()
 
@@ -25,3 +27,14 @@ async def get_profile_id(profile_id: int):
 async def read_component(number: int, text: str):
     number+= 1
     return{"msg": "" , "data":{"number": number , "text" : text}}
+
+@app.post("/mocklogin")
+async def mocklogin(request: Request, response:Response):
+    try:
+        body = await request.json()
+        username = body['username']
+        paswd = body['password']
+        return{"msg":"succesfully logged in", "data":{"username":username, "password": paswd }}
+    except Exception as e:
+        response.status_code = config.HTTP_BAD_REQUEST400
+        return{"msg":str(e), "data":[]}
