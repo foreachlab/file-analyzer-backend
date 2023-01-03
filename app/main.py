@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Response
+from fastapi import FastAPI, Request, Response , File, Form, UploadFile
 from starlette.middleware.cors import CORSMiddleware
 
 from utils import config
@@ -38,3 +38,10 @@ async def mocklogin(request: Request, response:Response):
     except Exception as e:
         response.status_code = config.HTTP_BAD_REQUEST400
         return{"msg":str(e), "data":[]}
+@app.post("/file")
+async def post_file(response:Response , email:str = Form() , file:UploadFile=File()):
+    try:
+        return{"msg":"success" , "data": []}
+    except Exception as e:
+        response.status_code = config.HTTP_BAD_REQUEST400
+        return{"msg": str(e) , "data": []}
