@@ -48,14 +48,6 @@ async def post_file(response:Response , email:str = Form() , file:UploadFile=Fil
         response.status_code = config.HTTP_BAD_REQUEST400
         return{"msg": str(e) , "data": []}
 
-@app.get("/health_check")
-async def read_main():
-    return {"msg": " "}
-
-client = TestClient(app)
-
-def test_read_main():
-    response = client.get("/")
-    assert response.status_code == 200
-    assert response.json() == {"msg": " "}
-    return{"msg":" ","data": []}
+#@app.get("/health_check")
+#async def read_main():
+#    return {"msg": " ","data": []}
